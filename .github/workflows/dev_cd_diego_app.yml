@@ -89,9 +89,18 @@ jobs:
         # https://github.com/pagopa/terraform-install-action/commits/main
         uses: pagopa/terraform-install-action@1f76f593176e58c423b88d72273a612ba7ba430b
 
+      - name: Generate Kubelogin
+        # from https://github.com/pagopa/terraform-aks-azure-action/blob/main/action.yml
+        uses: pagopa/github-action-generate-kubeconfig@main
+        with:
+          client_id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant_id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          aks_name: "dvopla-d-neu-dev01-aks"
+
       - name: Terraform Apply
         # from https://github.com/pagopa/terraform-aks-azure-action/blob/main/action.yml
-        uses: pagopa/terraform-aks-azure-action@main
+        uses: pagopa/terraform-aks-azure-action@check-kubeconfig-exists
         with:
           client_id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant_id: ${{ secrets.AZURE_TENANT_ID }}
