@@ -17,6 +17,7 @@ permissions:
 env:
   DIR: "src/domains/diego-app"
   AZURE_ENVIRONMENT: dev
+  aks_name: "dvopla-d-neu-dev01-aks"
 
 jobs:
   create_runner:
@@ -68,7 +69,7 @@ jobs:
   #         dir: ${{ env.DIR }}
   #         azure_environment: ${{ env.AZURE_ENVIRONMENT }}
   #         terraform_action: "plan"
-  #         aks_name: "dvopla-d-neu-dev01-aks"
+  #         aks_name: ${{ env.aks_name }}
 
   terraform_apply_job:
     name: Terraform Apply
@@ -96,7 +97,7 @@ jobs:
           client_id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant_id: ${{ secrets.AZURE_TENANT_ID }}
           subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          aks_name: "dvopla-d-neu-dev01-aks"
+          aks_name: ${{ env.aks_name }}
 
       - name: Terraform Apply
         # from https://github.com/pagopa/terraform-aks-azure-action/blob/main/action.yml
@@ -108,7 +109,7 @@ jobs:
           dir: ${{ env.DIR }}
           azure_environment: ${{ env.AZURE_ENVIRONMENT }}
           terraform_action: "apply"
-          aks_name: "dvopla-d-neu-dev01-aks"
+          aks_name: ${{ env.aks_name }}
 
   # terraform_preapply_job:
   #   name: Terraform Pre Apply
