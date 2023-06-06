@@ -176,4 +176,4 @@ is_cosmosdb_core_enabled  = false
 
 law_daily_quota_gb = 0.1
 
-azdoa_image_name = "azdo-agent-ubuntu2204-image-v1"
+azdoa_image_name = "azdo-agent-ubuntu2204-image-v2"

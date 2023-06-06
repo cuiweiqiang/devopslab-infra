@@ -18,7 +18,7 @@ module "azdoa_snet" {
 
 
 module "azdoa_vmss_li" {
-  source              = "git::https://github.com/pagopa/terraform-azurerm-v3.git//azure_devops_agent?ref=v6.13.0"
+  source              = "git::https://github.com/pagopa/terraform-azurerm-v3.git//azure_devops_agent?ref=39c5e91"
   count               = var.enable_azdoa ? 1 : 0
   name                = local.azuredevops_agent_vm_name
   resource_group_name = azurerm_resource_group.azdo_rg[0].name
@@ -28,6 +28,11 @@ module "azdoa_vmss_li" {
   location            = var.location
   source_image_name   = var.azdoa_image_name
   image_type          = "custom"
+
+  load_extension = true
+  use_custom_extension = true
+  extension_name = "tcpflow"
+  custom_extension_path = "${path.module}/extensions/tcpflow/script-config.json"
 
   tags = var.tags
 }
