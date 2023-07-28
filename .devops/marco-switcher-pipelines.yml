@@ -42,7 +42,7 @@ resources:
 
 
 steps:
-  - bash: echo "cluster name ${{ variables.CLUSTER_NAME }}, action ${{ variables.ACTION }}, usr n count ${{ variables.USER_NODE_COUNT }}, sys n count ${{ variables.SYSTEM_NODE_COUNT }}, rg ${{ variables.CLUSTER_RG }}"
+  - bash: echo "cluster name "${{ variables.CLUSTER_NAME }}", action "${{ variables.ACTION }}", usr n count "${{ variables.USER_NODE_COUNT }}", sys n count "${{ variables.SYSTEM_NODE_COUNT }}", rg "${{ variables.CLUSTER_RG }}
 
 #stages:
 ##DEV
