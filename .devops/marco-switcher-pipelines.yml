@@ -18,11 +18,11 @@ variables:
   DEV01_AKS_APISERVER_URL: '$(TF_DEV01_AKS_APISERVER_URL)'
   DEV01_AKS_AZURE_DEVOPS_SA_CACRT: '$(TF_DEV01_AKS_AZURE_DEVOPS_SA_CACRT)'
   DEV01_AKS_AZURE_DEVOPS_SA_TOKEN: '$(TF_DEV01_AKS_AZURE_DEVOPS_SA_TOKEN)'
-  CLUSTER_NAME: '$(CLUSTER_NAME)'
-  ACTION: '$(ACTION)'
-  USER_NODE_COUNT: '$(USER_NODE_COUNT)'
-  SYSTEM_NODE_COUNT: '$(SYSTEM_NODE_COUNT)'
-  CLUSTER_RG: '$(CLUSTER_RG)'
+  CLUSTER_NAMEx: '$(CLUSTER_NAME)'
+  ACTIONx: '$(ACTION)'
+  USER_NODE_COUNTx: '$(USER_NODE_COUNT)'
+  SYSTEM_NODE_COUNTx: '$(SYSTEM_NODE_COUNT)'
+  CLUSTER_RGx: '$(CLUSTER_RG)'
   # working dir
   WORKING_DIR_COMMON: 'src/domains/diego-common'
   WORKING_DIR_APP: 'src/domains/diego-app'
@@ -42,7 +42,7 @@ resources:
 
 
 steps:
-  - bash: echo "cluster name "${{ variables.CLUSTER_NAME }}", action "${{ variables.ACTION }}", usr n count "${{ variables.USER_NODE_COUNT }}", sys n count "${{ variables.SYSTEM_NODE_COUNT }}", rg "${{ variables.CLUSTER_RG }}
+  - bash: echo "cluster name "${{ variables.CLUSTER_NAMEx }}", action "${{ variables.ACTIONx }}", usr n count "${{ variables.USER_NODE_COUNTx }}", sys n count "${{ variables.SYSTEM_NODE_COUNTx }}", rg "${{ variables.CLUSTER_RGx }}
 
 #stages:
 ##DEV
