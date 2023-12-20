@@ -229,7 +229,7 @@ eventhubs = [
 #
 # Redis
 #
-redis_enabled = false
+redis_enabled = true
 
 
 # Function

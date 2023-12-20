@@ -22,7 +22,7 @@ module "redis" {
   capacity              = 1
   enable_non_ssl_port   = false
   family                = "C"
-  sku_name              = "Basic"
+  sku_name              = "Standard"
   enable_authentication = true
   redis_version         = 6
   zones                 = null
@@ -31,7 +31,7 @@ module "redis" {
     enabled              = true
     virtual_network_id   = module.vnet.id
     subnet_id            = module.redis_snet.id
-    private_dns_zone_ids = [azurerm_private_dns_zone.internal_devopslab[0].id]
+    private_dns_zone_ids = [azurerm_private_dns_zone.privatelink_redis_cache_windows_net.id]
   }
 
   tags = var.tags
