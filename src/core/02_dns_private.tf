@@ -18,7 +18,9 @@ resource "azurerm_private_dns_zone_virtual_network_link" "vnet_core" {
   tags = var.tags
 }
 
-# DNS private single server
+#
+# Postgreql
+#
 resource "azurerm_private_dns_zone" "privatelink_postgres_database_azure_com" {
 
   name                = "privatelink.postgres.database.azure.com"
@@ -40,7 +42,9 @@ resource "azurerm_private_dns_zone_virtual_network_link" "privatelink_postgres_d
   tags = var.tags
 }
 
-
+#
+# Storage
+#
 resource "azurerm_private_dns_zone" "storage_account" {
   name                = "privatelink.blob.core.windows.net"
   resource_group_name = azurerm_resource_group.rg_vnet.name
@@ -51,4 +55,24 @@ resource "azurerm_private_dns_zone_virtual_network_link" "storage_account_vnet" 
   resource_group_name   = azurerm_resource_group.rg_vnet.name
   private_dns_zone_name = azurerm_private_dns_zone.storage_account.name
   virtual_network_id    = module.vnet.id
+}
+
+#
+# Redis
+#
+resource "azurerm_private_dns_zone" "privatelink_redis_cache_windows_net" {
+  name                = "privatelink.redis.cache.windows.net"
+  resource_group_name = azurerm_resource_group.rg_vnet.name
+
+  tags = var.tags
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "privatelink_redis_cache_windows_net_vnet" {
+  name                  = module.vnet.name
+  resource_group_name   = azurerm_resource_group.rg_vnet.name
+  private_dns_zone_name = azurerm_private_dns_zone.privatelink_redis_cache_windows_net.name
+  virtual_network_id    = module.vnet.id
+  registration_enabled  = false
+
+  tags = var.tags
 }
